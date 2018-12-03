@@ -1,0 +1,55 @@
+# Created Xandr https://xandrwix.wixsite.com/resume
+# equinox.digital Inc. https://equinox.digital
+# Copyright (c) 2018
+
+spring:
+  profiles:
+    active: prod
+
+---
+
+spring:
+  profiles: prod
+  session:
+    timeout: 60m
+
+  application:
+    name: session_manager
+#  data:
+#    rest:
+#      basePath: /private/api
+server:
+  servlet:
+    context-path: /session_manager
+    session:
+      persistent: true
+  error:
+    whitelabel:
+      enabled: true
+
+logging:
+  level:
+    root: info
+    org:
+      springframework.web: info
+      hibernate: debug
+#        type.descriptor.sql.BasicBinder: debug
+
+management:
+  endpoint:
+    shutdown.enabled: true
+    env:
+      enabled: true
+  endpoints.web:
+    exposure.include: '*'
+    base-path: /public/admin/actuators
+  endpoints:
+    enabled-by-default: true
+
+info:
+  app:
+    name: session_manager
+    version: 1.0-SNAPSHOT
+    description: This app admin sessions
+
+digital.equinox.session_manager.baseurl: /session_manager

@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sessions list</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- Bootstrap include -->
+    <link th:href="@{/md_bootstrap_header.html}" rel="import">
+    <!-- Bootstrap include -->
+</head>
+<body class="text-center">
+<form action="#" th:object="${form}" method="post">
+    <table id="sessionsTable" class="table table-striped table-bordered table-sm"
+           cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th class="th-sm">N
+            </th>
+            <th class="th-sm">Creation
+            </th>
+            <th class="th-sm">Idle
+            </th>
+            <th class="th-sm">Last accessed
+            </th>
+            <th class="th-sm">Ip
+            </th>
+            <th class="th-sm">Valid
+            </th>
+            <th class="th-sm">Authenticated
+            </th>
+            <th class="th-sm">Hash
+            </th>
+            <th class="th-sm">Invalidate/Username
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item, itemStat : ${tomcatSessions}">
+            <td th:text="${item.id}">N/A</td>
+            <td th:text="${item.creationTime}">N/A</td>
+            <td th:text="${item.idleTime}">N/A</td>
+            <td th:text="${item.lastAccessedTime}">N/A</td>
+            <td th:text="${item.remoteAddress}">N/A</td>
+            <td th:text="${item.valid}? V : ''">N/A</td>
+            <td th:text="${item.authenticated}? V : ''">N/A</td>
+            <td th:text="${item.hash}">N/A</td>
+            <th scope="row">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" th:id="checkbox + ${item.id}"
+                           th:field="*{sessions[__${itemStat.index}__].invalidate}">
+                    <label class="custom-control-label" th:for="checkbox + ${item.id}" th:text="${item.principalName}"></label>
+                    <input type="hidden" th:value="${item.hash}" th:name="|sessions[${itemStat.index}].hash|"/>
+                </div>
+            </th>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th class="th-sm">N
+            </th>
+            <th class="th-sm">Creation
+            </th>
+            <th class="th-sm">Idle
+            </th>
+            <th class="th-sm">Last accessed
+            </th>
+            <th class="th-sm">Ip
+            </th>
+            <th class="th-sm">Valid
+            </th>
+            <th class="th-sm">Authenticated
+            </th>
+            <th class="th-sm">Hash
+            </th>
+            <th class="th-sm">Invalidate/Username
+            </th>
+        </tr>
+        </tfoot>
+    </table>
+    <button class="btn btn-primary"
+            name="invalidate" type="submit">Invalidate selected
+    </button>
+</form>
+
+<script type="text/javascript" th:src="@{/sessionList.js}"></script>
+<link rel="stylesheet" th:href="@{/sessionList.css}">
+</body>
+</html>

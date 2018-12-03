@@ -1,0 +1,8 @@
+/*
+ * Created Xandr https://xandrwix.wixsite.com/resume
+ * equinox.digital Inc. https://equinox.digital
+ * Copyright (c) 2018
+ */
+rootProject.name = 'spring_tomcat_session_manager'
+include 'core', 'front', 'demo'
+
