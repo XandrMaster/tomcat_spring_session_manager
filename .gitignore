@@ -107,6 +107,3 @@ dataSources/
 additional/**
 *.mv.db
 *.trace.db
-demo/src/main/kotlin/digital/equinox/backend/tools/session_manager/demo/Controller.kt
-demo/src/main/kotlin/digital/equinox/backend/tools/session_manager/demo/RestTest.kt
-demo/src/main/kotlin/digital/equinox/backend/tools/session_manager/demo/WebSecurityConfig.kt
